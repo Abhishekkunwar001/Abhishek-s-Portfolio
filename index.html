@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ═══════════════════════════════════════════
+       META & SEO
+  ═══════════════════════════════════════════ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Abhishek Kumar – Software Engineer & AI/ML Engineer. Portfolio showcasing projects, skills, and experience." />
+  <meta name="keywords" content="Abhishek Kumar, Software Engineer, AI, Machine Learning, Portfolio, Python, AWS, GIET" />
+  <meta name="author" content="Abhishek Kumar" />
+  <meta property="og:title" content="Abhishek Kumar | Software & AI/ML Engineer" />
+  <meta property="og:description" content="3D Interactive Portfolio — Software Engineer | AI & ML Engineer" />
+  <meta property="og:type" content="website" />
+  <title>Abhishek Kumar | Software & AI/ML Engineer</title>
+
+  <!-- Google Fonts: Syne (display) + JetBrains Mono (code accent) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="dark">
+
+  <!-- ═══════════════════════════════════════════
+       LOADING SCREEN
+  ═══════════════════════════════════════════ -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">AK</div>
+      <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+      <div class="loader-text">Initializing...</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CUSTOM CURSOR
+  ═══════════════════════════════════════════ -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SCROLL PROGRESS BAR
+  ═══════════════════════════════════════════ -->
+  <div id="scroll-progress"></div>
+
+  <!-- ═══════════════════════════════════════════
+       STICKY NAVBAR
+  ═══════════════════════════════════════════ -->
+  <header id="navbar">
+    <nav class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>AK<span class="logo-bracket">/&gt;</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about"          class="nav-link">About</a></li>
+        <li><a href="#projects"       class="nav-link">Projects</a></li>
+        <li><a href="#experience"     class="nav-link">Experience</a></li>
+        <li><a href="#skills"         class="nav-link">Skills</a></li>
+        <li><a href="#achievements"   class="nav-link">Achievements</a></li>
+        <li><a href="#certifications" class="nav-link">Certs</a></li>
+        <li><a href="#contact"        class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Theme toggle -->
+        <button id="theme-toggle" aria-label="Toggle theme" class="icon-btn">
+          <i class="fas fa-sun" id="theme-icon"></i>
+        </button>
+        <!-- Hamburger -->
+        <button id="hamburger" aria-label="Menu" class="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       1. HERO SECTION (Three.js canvas)
+  ═══════════════════════════════════════════ -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <p class="hero-eyebrow"><span class="mono">//</span> Based in Bokaro Steel City, India</p>
+        <h1 class="hero-name">Abhishek<br /><span class="name-accent">Kumar</span></h1>
+        <p class="hero-role">Software Engineer <span class="sep">|</span> AI &amp; ML Engineer</p>
+        <p class="hero-typing">
+          <span class="mono typing-prefix">&gt; </span>
+          <span id="typed"></span><span class="cursor-blink">_</span>
+        </p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-primary">
+            <i class="fas fa-code"></i> View Projects
+          </a>
+          <a href="#" class="btn btn-outline" id="resume-btn" download>
+            <i class="fas fa-file-down"></i> Download Resume
+          </a>
+          <a href="#contact" class="btn btn-ghost">
+            <i class="fas fa-paper-plane"></i> Contact Me
+          </a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/Abhishekkunwar001" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/abhishek-kumar-0425a5287" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:23cseaiml199.abhishekkumar@giet.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="scroll-hint">
+        <div class="scroll-line"></div>
+        <span class="mono" style="font-size:.7rem;letter-spacing:.2em;">SCROLL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       2. ABOUT SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag mono">// 01</span>
+        <h2 class="section-title">About <span class="accent">Me</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="about-grid">
+        <!-- Bio -->
+        <div class="about-bio reveal">
+          <p class="bio-text">
+            Detail-oriented 3rd-year CSE (AI &amp; ML) student with strong foundations in
+            <span class="highlight">data structures, algorithms</span>, cloud systems, and machine learning.
+            Passionate about building <span class="highlight">scalable systems</span> and
+            <span class="highlight">AI-driven real-world solutions</span> that create measurable impact.
+          </p>
+          <p class="bio-text" style="margin-top:1.2rem;">
+            I thrive at the intersection of mathematics, code, and product thinking —
+            turning complex problems into elegant, deployable solutions from research to production.
+          </p>
+          <div class="about-info">
+            <div class="info-row"><i class="fas fa-map-marker-alt"></i> Bokaro Steel City, Jharkhand, India</div>
+            <div class="info-row"><i class="fas fa-university"></i> GIET University — B.Tech CSE (AI &amp; ML)</div>
+            <div class="info-row"><i class="fas fa-envelope"></i> 23cseaiml199.abhishekkumar@giet.edu</div>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="stat-grid reveal" style="transition-delay:.15s">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div class="stat-value" data-target="8.48" data-decimal="2">0</div>
+            <div class="stat-label">GPA Score</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-code-branch"></i></div>
+            <div class="stat-value" data-target="4" data-decimal="0">0</div>
+            <div class="stat-label">Major Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fab fa-aws"></i></div>
+            <div class="stat-value">AWS</div>
+            <div class="stat-label">Cloud Experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+            <div class="stat-value" data-target="3" data-decimal="0">0</div>
+            <div class="stat-label">Hackathons</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       3. PROJECTS SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="projects" class="section alt-bg">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag mono">// 02</span>
+        <h2 class="section-title">Featured <span class="accent">Projects</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card reveal" data-project="0">
+          <div class="card-glow"></div>
+          <div class="card-inner">
+            <div class="card-header">
+              <div class="card-icon" style="--icon-color:#38bdf8"><i class="fas fa-cloud-sun"></i></div>
+              <div class="card-type mono">Web App</div>
+            </div>
+            <h3 class="card-title">Weather Web App</h3>
+            <p class="card-desc">Real-time weather forecasting with async API integration, geolocation, and performance-optimized rendering across any device.</p>
+            <div class="card-tags">
+              <span class="tag">JavaScript</span><span class="tag">REST API</span><span class="tag">CSS3</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-sm btn-outline modal-trigger" data-id="0">Details</button>
+              <a href="https://github.com/Abhishekkunwar001/Weather-Website" target="_blank" rel="noopener" class="btn btn-sm btn-ghost">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card reveal" data-project="1" style="transition-delay:.1s">
+          <div class="card-glow"></div>
+          <div class="card-inner">
+            <div class="card-header">
+              <div class="card-icon" style="--icon-color:#a78bfa"><i class="fas fa-file-lines"></i></div>
+              <div class="card-type mono">Tool</div>
+            </div>
+            <h3 class="card-title">Resume Builder Tool</h3>
+            <p class="card-desc">Dynamic resume generation engine with live preview, form validation, and one-click PDF export for job seekers.</p>
+            <div class="card-tags">
+              <span class="tag">HTML5</span><span class="tag">JS</span><span class="tag">PDF Export</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-sm btn-outline modal-trigger" data-id="1">Details</button>
+              <a href="https://github.com/Abhishekkunwar001/JobReadyResume" target="_blank" rel="noopener" class="btn btn-sm btn-ghost">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card reveal" data-project="2" style="transition-delay:.2s">
+          <div class="card-glow"></div>
+          <div class="card-inner">
+            <div class="card-header">
+              <div class="card-icon" style="--icon-color:#34d399"><i class="fas fa-hand-paper"></i></div>
+              <div class="card-type mono">Computer Vision</div>
+            </div>
+            <h3 class="card-title">Rock Paper Scissors</h3>
+            <p class="card-desc">Real-time hand gesture recognition game using OpenCV and MediaPipe — no controller needed, just your hand.</p>
+            <div class="card-tags">
+              <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">MediaPipe</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-sm btn-outline modal-trigger" data-id="2">Details</button>
+              <a href="https://github.com/Abhishekkunwar001/Rock-Paper-Scissor-Game-Using-Computer-vision" target="_blank" rel="noopener" class="btn btn-sm btn-ghost">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card reveal" data-project="3" style="transition-delay:.3s">
+          <div class="card-glow"></div>
+          <div class="card-inner">
+            <div class="card-header">
+              <div class="card-icon" style="--icon-color:#fb7185"><i class="fas fa-shield-halved"></i></div>
+              <div class="card-type mono">ML / AI</div>
+            </div>
+            <h3 class="card-title">Credit Card Fraud Detection</h3>
+            <p class="card-desc">Trained ML pipeline handling extreme class imbalance with SMOTE, achieving high precision on anomalous transaction detection.</p>
+            <div class="card-tags">
+              <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">SMOTE</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-sm btn-outline modal-trigger" data-id="3">Details</button>
+              <a href="https://github.com/Abhishekkunwar001/Credit-Card-Fraud-Detection" target="_blank" rel="noopener" class="btn btn-sm btn-ghost">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PROJECT MODAL
+  ═══════════════════════════════════════════ -->
+  <div id="project-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-box">
+      <button id="modal-close" class="modal-close" aria-label="Close"><i class="fas fa-xmark"></i></button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       4. EXPERIENCE TIMELINE
+  ═══════════════════════════════════════════ -->
+  <section id="experience" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag mono">// 03</span>
+        <h2 class="section-title">Work <span class="accent">Experience</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="timeline">
+
+        <!-- Entry 1 -->
+        <div class="timeline-entry reveal">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card glass">
+            <div class="tl-header">
+              <div>
+                <h3 class="tl-company">Bharat Intern</h3>
+                <p class="tl-role">Web Development Intern</p>
+              </div>
+              <span class="tl-badge">Internship</span>
+            </div>
+            <ul class="tl-points">
+              <li><i class="fas fa-chevron-right accent-icon"></i> Improved frontend performance by <strong>15%</strong> through optimization strategies</li>
+              <li><i class="fas fa-chevron-right accent-icon"></i> Implemented async API handling for seamless data fetch workflows</li>
+              <li><i class="fas fa-chevron-right accent-icon"></i> Reduced rendering delay with lazy loading and code splitting</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">REST API</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Entry 2 -->
+        <div class="timeline-entry reveal" style="transition-delay:.15s">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line last"></div>
+          </div>
+          <div class="timeline-card glass">
+            <div class="tl-header">
+              <div>
+                <h3 class="tl-company">Hebbale's Academy</h3>
+                <p class="tl-role">Programmer Intern</p>
+              </div>
+              <span class="tl-badge">Internship</span>
+            </div>
+            <ul class="tl-points">
+              <li><i class="fas fa-chevron-right accent-icon"></i> Built production-grade <strong>REST APIs</strong> in Python / Flask</li>
+              <li><i class="fas fa-chevron-right accent-icon"></i> Deployed infrastructure on <strong>AWS EC2, S3, and IAM</strong></li>
+              <li><i class="fas fa-chevron-right accent-icon"></i> Optimized MySQL queries, reducing avg response time significantly</li>
+              <li><i class="fas fa-chevron-right accent-icon"></i> Contributed to <strong>CI/CD pipeline</strong> setup and automation</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tag">Python</span><span class="tag">AWS</span><span class="tag">MySQL</span><span class="tag">CI/CD</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       5. SKILLS SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="skills" class="section alt-bg">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag mono">// 04</span>
+        <h2 class="section-title">Skills &amp; <span class="accent">Technologies</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="skills-grid">
+
+        <!-- Category 1 -->
+        <div class="skill-category reveal glass">
+          <h3 class="skill-cat-title"><i class="fas fa-terminal"></i> Programming</h3>
+          <div class="skill-bars">
+            <div class="skill-item" data-val="90">
+              <div class="skill-name-row"><span>Python</span><span class="skill-pct">90%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--clr:#38bdf8"></div></div>
+            </div>
+            <div class="skill-item" data-val="78">
+              <div class="skill-name-row"><span>JavaScript</span><span class="skill-pct">78%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--clr:#a78bfa"></div></div>
+            </div>
+            <div class="skill-item" data-val="82">
+              <div class="skill-name-row"><span>REST APIs</span><span class="skill-pct">82%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--clr:#34d399"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2 -->
+        <div class="skill-category reveal glass" style="transition-delay:.1s">
+          <h3 class="skill-cat-title"><i class="fab fa-aws"></i> Cloud &amp; DevOps</h3>
+          <div class="skill-bars">
+            <div class="skill-item" data-val="75">
+              <div class="skill-name-row"><span>AWS</span><span class="skill-pct">75%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--clr:#f59e0b"></div></div>
+            </div>
+            <div class="skill-item" data-val="85">
+              <div class="skill-name-row"><span>Git &amp; GitHub</span><span class="skill-pct">85%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--clr:#38bdf8"></div></div>
+            </div>
+            <div class="skill-item" data-val="65">
+              <div class="skill-name-row"><span>CI/CD</span><span class="skill-pct">65%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--clr:#a78bfa"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3 -->
+        <div class="skill-category reveal glass" style="transition-delay:.2s">
+          <h3 class="skill-cat-title"><i class="fas fa-brain"></i> AI &amp; ML</h3>
+          <div class="skill-bars">
+            <div class="skill-item" data-val="80">
+              <div class="skill-name-row"><span>Machine Learning</span><span class="skill-pct">80%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--clr:#fb7185"></div></div>
+            </div>
+            <div class="skill-item" data-val="78">
+              <div class="skill-name-row"><span>Data Structures</span><span class="skill-pct">78%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--clr:#34d399"></div></div>
+            </div>
+            <div class="skill-item" data-val="70">
+              <div class="skill-name-row"><span>Systems Thinking</span><span class="skill-pct">70%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--clr:#a78bfa"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Radial Canvas Charts -->
+      <div class="radial-grid">
+        <div class="radial-item reveal">
+          <canvas id="radial-1" width="140" height="140"></canvas>
+          <p class="radial-label">Python</p>
+          <p class="radial-val mono">90%</p>
+        </div>
+        <div class="radial-item reveal" style="transition-delay:.08s">
+          <canvas id="radial-2" width="140" height="140"></canvas>
+          <p class="radial-label">AWS</p>
+          <p class="radial-val mono">75%</p>
+        </div>
+        <div class="radial-item reveal" style="transition-delay:.16s">
+          <canvas id="radial-3" width="140" height="140"></canvas>
+          <p class="radial-label">ML</p>
+          <p class="radial-val mono">80%</p>
+        </div>
+        <div class="radial-item reveal" style="transition-delay:.24s">
+          <canvas id="radial-4" width="140" height="140"></canvas>
+          <p class="radial-label">JavaScript</p>
+          <p class="radial-val mono">78%</p>
+        </div>
+        <div class="radial-item reveal" style="transition-delay:.32s">
+          <canvas id="radial-5" width="140" height="140"></canvas>
+          <p class="radial-label">CI/CD</p>
+          <p class="radial-val mono">65%</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       6. ACHIEVEMENTS SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="achievements" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag mono">// 05</span>
+        <h2 class="section-title">Key <span class="accent">Achievements</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="achieve-grid">
+
+        <div class="achieve-card glass reveal">
+          <div class="achieve-icon"><i class="fas fa-robot"></i></div>
+          <div class="achieve-badge">Hackathon</div>
+          <h3 class="achieve-title">Agentic AI Hackathon</h3>
+          <p class="achieve-desc">Built an <strong>AI Home Inventory System</strong> using agentic LLM workflows — automated item tracking, smart restock alerts, and natural language querying.</p>
+          <div class="achieve-tags"><span class="tag">LLM</span><span class="tag">Python</span><span class="tag">Agents</span></div>
+        </div>
+
+        <div class="achieve-card glass reveal" style="transition-delay:.1s">
+          <div class="achieve-icon gold"><i class="fas fa-medal"></i></div>
+          <div class="achieve-badge gold">🥉 3rd Place</div>
+          <h3 class="achieve-title">Hacknovation 2.0</h3>
+          <p class="achieve-desc">Secured <strong>3rd position</strong> with an AI Patient Queue Optimization system — ML-powered scheduling reducing patient wait times significantly.</p>
+          <div class="achieve-tags"><span class="tag">ML</span><span class="tag">Flask</span><span class="tag">Healthcare AI</span></div>
+        </div>
+
+        <div class="achieve-card glass reveal" style="transition-delay:.2s">
+          <div class="achieve-icon teal"><i class="fas fa-hospital"></i></div>
+          <div class="achieve-badge teal">Competition</div>
+          <h3 class="achieve-title">Programmer Learn-a-thon</h3>
+          <p class="achieve-desc">Developed a <strong>Hospital Readmission Prediction</strong> model using clinical data, feature engineering, and ensemble methods for accurate risk stratification.</p>
+          <div class="achieve-tags"><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">XGBoost</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       7. CERTIFICATIONS SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="certifications" class="section alt-bg">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag mono">// 06</span>
+        <h2 class="section-title">Certifi<span class="accent">cations</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="cert-grid">
+
+        <div class="cert-card glass reveal">
+          <div class="cert-logo nptel">NPTEL</div>
+          <div class="cert-body">
+            <h3 class="cert-title">Joy of Computing using Python</h3>
+            <p class="cert-issuer">IIT Ropar via NPTEL</p>
+            <div class="cert-verify"><i class="fas fa-circle-check"></i> Verified</div>
+          </div>
+        </div>
+
+        <div class="cert-card glass reveal" style="transition-delay:.1s">
+          <div class="cert-logo tata">TATA</div>
+          <div class="cert-body">
+            <h3 class="cert-title">GenAI-Powered Data Analytics</h3>
+            <p class="cert-issuer">Tata Group via Forage</p>
+            <div class="cert-verify"><i class="fas fa-circle-check"></i> Verified</div>
+          </div>
+        </div>
+
+        <div class="cert-card glass reveal" style="transition-delay:.2s">
+          <div class="cert-logo nptel">NPTEL</div>
+          <div class="cert-body">
+            <h3 class="cert-title">Industrial IoT 4.0</h3>
+            <p class="cert-issuer">IIT Kharagpur via NPTEL</p>
+            <div class="cert-verify"><i class="fas fa-circle-check"></i> Verified</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       8. CONTACT SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag mono">// 07</span>
+        <h2 class="section-title">Get In <span class="accent">Touch</span></h2>
+        <div class="section-line"></div>
+        <p class="section-sub reveal">Whether it's a collaboration, an opportunity, or just a hello — let's connect.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Info -->
+        <div class="contact-info reveal">
+          <div class="contact-card glass">
+            <i class="fas fa-envelope contact-icon"></i>
+            <div>
+              <p class="contact-label">Email</p>
+              <a href="mailto:23cseaiml199.abhishekkumar@giet.edu" class="contact-val">
+                23cseaiml199.abhishekkumar@giet.edu
+              </a>
+            </div>
+          </div>
+          <div class="contact-card glass">
+            <i class="fab fa-linkedin-in contact-icon"></i>
+            <div>
+              <p class="contact-label">LinkedIn</p>
+              <a href="https://www.linkedin.com/in/abhishek-kumar-0425a5287" target="_blank" rel="noopener" class="contact-val">
+                /in/abhishek-kumar-0425a5287
+              </a>
+            </div>
+          </div>
+          <div class="contact-card glass">
+            <i class="fab fa-github contact-icon"></i>
+            <div>
+              <p class="contact-label">GitHub</p>
+              <a href="https://github.com/Abhishekkunwar001" target="_blank" rel="noopener" class="contact-val">
+                /Abhishekkunwar001
+              </a>
+            </div>
+          </div>
+          <div class="contact-card glass">
+            <i class="fas fa-map-pin contact-icon"></i>
+            <div>
+              <p class="contact-label">Location</p>
+              <span class="contact-val">Bokaro Steel City, Jharkhand, India</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contact-form-wrap reveal glass" style="transition-delay:.15s">
+          <form id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="c-name">Name</label>
+              <input id="c-name" type="text" name="name" placeholder="Your name" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="c-email">Email</label>
+              <input id="c-email" type="email" name="email" placeholder="your@email.com" required autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="c-msg">Message</label>
+              <textarea id="c-msg" name="message" rows="5" placeholder="Your message..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-full" id="form-submit">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            <div id="form-success" class="form-success hidden">
+              <i class="fas fa-circle-check"></i> Message sent! I'll get back to you soon.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer id="footer">
+    <div class="footer-container">
+      <p class="footer-brand">
+        <span class="mono">&lt;</span>Abhishek Kumar<span class="mono">/&gt;</span>
+      </p>
+      <div class="footer-socials">
+        <a href="https://github.com/Abhishekkunwar001" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/abhishek-kumar-0425a5287" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:23cseaiml199.abhishekkumar@giet.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p class="footer-copy">&copy; <span id="footer-year"></span> Abhishek Kumar. Built with <span class="accent">❤</span> &amp; Three.js</p>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- External JS -->
+  <script src="script.js"></script>
+</body>
+</html>
